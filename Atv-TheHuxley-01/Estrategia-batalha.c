@@ -1,25 +1,31 @@
+/* Estrategia de Batalha */
 #include <stdio.h>
 #include <math.h>
+/*
+    Verificar se a quantidade do exercito A é maior do que o exercito B + Reforco
+    1. É preciso entender que só uma das opcao tendo mais em A nao eh suficiente para avancar
+    2. Eh preciso verificar outros pontos que compoe o exercito, como, tanque, aviao...
+*/
 
 int main() {
 
-  int soldA,tanqA,aviA,lanmisA; //Aliados
-  int soldB,tanqB,aviB,lanmisB; //Inimigos
-  int soldR,tanqR,aviR,lanmisR; //Ajuda
-  int somasd, somatq, somaav, somalc; //Verificadores
-  int x=0, y=0; 
+    int soldA,tanqA,aviA,lanmisA; //Aliados
+    int soldB,tanqB,aviB,lanmisB; //Inimigos
+    int soldR,tanqR,aviR,lanmisR; //Ajuda Inimiga
+    int somasd, somatq, somaav, somalc; //Verificadores de quantidade
+    int x=0, y=0; //Contadores
 
-  //Recebendo os valores
-  scanf("%d %d %d %d", &soldA, &tanqA, &aviA, &lanmisA);
-  scanf("%d %d %d %d", &soldB, &tanqB, &aviB, &lanmisB);
-  scanf("%d %d %d %d", &soldR, &tanqR, &aviR, &lanmisR);
+    //Recebendo os valores
+    scanf("%d %d %d %d", &soldA, &tanqA, &aviA, &lanmisA); //Exer A
+    scanf("%d %d %d %d", &soldB, &tanqB, &aviB, &lanmisB); //Exer B
+    scanf("%d %d %d %d", &soldR, &tanqR, &aviR, &lanmisR); //Exer Reforco B
 
-  somasd = soldB + soldR;
-  somatq = tanqB + tanqR; 
-  somaav = aviB + aviR;
-  somalc = lanmisB + lanmisR; 
-   
-  if (soldA > somasd){ // Soldados
+    somasd = soldB + soldR; // Soma soldados
+    somatq = tanqB + tanqR; // soma tanque
+    somaav = aviB + aviR; // Soma aviao
+    somalc = lanmisB + lanmisR; // soma lanca misseis
+
+    if (soldA > somasd){ // Soldados
         x += 1;
     }
     if (soldA < somasd){
@@ -50,6 +56,7 @@ int main() {
     if (x>2){
         printf("Avancar");
     }
+    // Se os contadores forem maiores que 2 temos resultados
     else if(y>2){
     printf("Recuar");
     }
