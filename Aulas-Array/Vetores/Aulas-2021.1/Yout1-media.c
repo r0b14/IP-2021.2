@@ -22,8 +22,13 @@ int main( void )
     }
 
     media = somanotas/qtd_notas;
+    printf("%s%12s\n", "Avaliacao", "Notas");
 
-    printf("media: %.2f", media);
+    for ( i = 0 ; i < qtd_notas ; i++)
+    {
+        printf("%6d%15.2f\n", i+1, vetnotas[i]);
+    }
+    printf("  \nMedia: %.2f", media);
 
     return 0;
 }
