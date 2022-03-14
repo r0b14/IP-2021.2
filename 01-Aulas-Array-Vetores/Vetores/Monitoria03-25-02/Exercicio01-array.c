@@ -16,7 +16,7 @@ int main()
     while (quantSequencia > 0)
     {
         scanf("%d", &tamSequencia);
-        int sequencia[tamSequencia] = { 0 };
+        int sequencia[tamSequencia];
         for (index = 0; index < tamSequencia; index++)
         {
             scanf("%d", &sequencia[index]);
@@ -49,11 +49,15 @@ int main()
         {
             for (i = indexFinal - maiorSequencia; i <= indexFinal ;i++)
             {
-                printf("%d");
+                printf("%d", sequencia[i]);
             }
+            printf("\n");
         }
         // Array sequencia totalmente preenchido
         --quantSequencia;
+        maiorSequencia = 0;
+        atualSequencia = 0;
+        indexFinal = 0;
     }
 
     return 0;
