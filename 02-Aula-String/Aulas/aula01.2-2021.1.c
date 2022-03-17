@@ -2,8 +2,8 @@
 #include <stdio.h>
 /**
  * String = Sequencia de caracteres
- * ' ' -> Usado para careteres.
- * " " -> Usado para strings.
+ * ' ' -> Usado para careteres. 'a' == a
+ * " " -> Usado para strings. => "a" == {'a', '\0'}
  * Para localizarmos o fim da string usamos o '\0' -> caracter nulo.
  * '\0' -> caracter nulo | Fim da string.
  **/
