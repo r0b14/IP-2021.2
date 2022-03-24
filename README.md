@@ -1,4 +1,4 @@
-# ![logo-cin](https://user-images.githubusercontent.com/56169778/155887551-9cceb258-19be-4f99-b613-c5e8c092a7c4.png?w=310) (IF669) IP-UFPE 2021.2
+# ![LogoCin](./img/iconcin.png) (IF669) IP-UFPE 2021.2
 
  Repositório de *Exercícios* e *Atividades* - IP 2021.2
 
