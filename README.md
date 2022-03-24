@@ -1,4 +1,4 @@
-# ![LogoCin](./img/icon-cin.jpg) (IF669) IP-UFPE 2021.2
+# ![LogoCin](./img/icon-cin-redonda.jpg) (IF669) IP-UFPE 2021.2
 
  Repositório de *Exercícios* e *Atividades* - IP 2021.2
 
