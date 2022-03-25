@@ -7,7 +7,6 @@
 |     Nome    | Link  | Status |
 |:------------|:------|:-------|
 | Notion      | [Pagina](https://r0b14.notion.site/IF669-c7570ec489ce4413bcf3f9e540794889)|  Ok |
-  -> 
  ### Links usados na disciplina
 |     Nome     | Link  | Status |
 |:------------ |:------|:-------|
