@@ -20,33 +20,38 @@ typedef struct {
    double nota; */
    Aluno parteAluno;
    unsigned char chato; // Como não temos binário estamos simulando
+   //usigned -> permite-me guardar só numeros positivos com o range de 0 a 255
 } Professor;
 
 int main () {
 
    int i;
-   Aluno aluno;
-   Professor professor;
+   float soma = 0, mediaglobal = 0;
+   Aluno alunos[T_TURMA];
+   Professor professor; // professor é a variável do tipo Professor que possui toda uma estrutura declarada inicialmente
+   /** 
+      strcpy (alunos.nome, "Robson Th");
+      strcpy (professor.parteAluno.nome, "Alexandre"); //Nesse caso estamos acessando nome que está dentro do parte aluno 
+      professor.chato = 0; // Estou declarando que o professor não eh chato.
+   **/
 
-   strcpy (aluno.nome, "Robson Th");
-   strcpy (professor.parteAluno.nome, "Alexandre"); //Nesse caso estamos acessando nome que está dentro do parte aluno 
-
-
+   // nome-variavel[posicao-vetor].atributo
    // Leitura da Turma
    for ( i = 0 ; i < T_TURMA ; i++ ) {
       printf("Digite o nome do %d aluno: ", i+1);
-      scanf(" %49[^\n]", aluno.nome);
+      scanf(" %49[^\n]", alunos[i].nome);
       printf("Digite a nota do %d aluno: ", i+1);
-      scanf("%d", &notas[i]);
-      soma += notas[i];
+      scanf("%f", &alunos[i].nota);
+      soma += alunos[i].nota;
    }
 
    mediaglobal = soma / T_TURMA;
 
    //Selecionando alunos
+   printf("Media Global: %.2f\n", mediaglobal);
    for ( i = 0 ; i < T_TURMA ; i++ ) { 
-      if (notas[i] >= mediaglobal) {
-         printf(" Aluno: %s\n", nomes[i]);
+      if (alunos[i].nota >= mediaglobal) {
+         printf(" Aluno: %s\n", alunos[i].nome);
       }
    }
 
