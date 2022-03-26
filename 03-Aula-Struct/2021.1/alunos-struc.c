@@ -13,18 +13,29 @@
 typedef struct {
    char nome[SIZE];
    float nota;
-} Pessoa;
+} Aluno; // Aluno eh um tipo, que é uma estrutura
+
+typedef struct {
+   /* char nome[55]; // Podemos verificar que o professor é em partes um aluno... podemos reaproveitar a estrutura anterior.
+   double nota; */
+   Aluno parteAluno;
+   unsigned char chato; // Como não temos binário estamos simulando
+} Professor;
 
 int main () {
 
    int i;
-   char nomes[T_TURMA][SIZE]; // TENHO 50 NOME DE 70 CARACTERES -> vetores bidimensionais
-   float notas[T_TURMA], soma = 0, mediaglobal = 0; // TENHO 70 NOTAS INDIVIDUAIS
+   Aluno aluno;
+   Professor professor;
+
+   strcpy (aluno.nome, "Robson Th");
+   strcpy (professor.parteAluno.nome, "Alexandre"); //Nesse caso estamos acessando nome que está dentro do parte aluno 
+
 
    // Leitura da Turma
    for ( i = 0 ; i < T_TURMA ; i++ ) {
       printf("Digite o nome do %d aluno: ", i+1);
-      scanf(" %49[^\n]", nomes[i]);
+      scanf(" %49[^\n]", aluno.nome);
       printf("Digite a nota do %d aluno: ", i+1);
       scanf("%d", &notas[i]);
       soma += notas[i];
