@@ -18,6 +18,7 @@
 int main() {
    // Se fomos fazer um caça palavras de string precisamos inserir mais um indice 
    // Ao inves ter usarmos um caracter por linha, vamos ter uma palavra
+   
    char cacaPalavras[SIZE][SIZE];
    char palavra[20];
    int i, j, k;
