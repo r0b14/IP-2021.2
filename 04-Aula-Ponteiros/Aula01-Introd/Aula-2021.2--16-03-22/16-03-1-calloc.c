@@ -1,10 +1,10 @@
 #include <stdio.h>
 
+typedef struct {
+    int a, b
+} Number ;
+
 int main(){
-    struct
-    {
-        int a, b}
-    };
     
     int *pX = NULL;
     pX = (int *) calloc(10, sizeof(int)); // int pX[10];
