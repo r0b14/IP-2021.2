@@ -2,9 +2,10 @@
 layout: default
 ---
 
-Disciplina Introdução a Programação - UFPE -- (IF669) IP-UFPE 2021.2
+IF669 - Introdução a Programação - UFPE - 2021.2
 <!-- Text can be **bold**, _italic_, or ~~strikethrough~~. -->
-[Link para a disciplina](https://sites.google.com/a/cin.ufpe.br/if669ec/home?authuser=0).
+
+-- [Link para a o site da disciplina](https://sites.google.com/a/cin.ufpe.br/if669ec/home?authuser=0).
 
 There should be whitespace between paragraphs.
 
