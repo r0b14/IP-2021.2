@@ -12,25 +12,26 @@ int main() {
    printf("end vet: %p\n", &vet);
    printf("end p: %p\n", p);
 
+   // Letra 2B)
    printf("\nLetra 2B\n");
    for (int i = 0; i < 5; i++) {
       printf("%d ", p[i]);
    }
 
+   // Letra 2C)
    printf("\n\nLetra 2C\n");
    for (int i = 0; i < 5; i++) {
       printf("%d ", *(p + 1));
    }
 
+   // Letra 2D)
    printf("\n\nLetra 2D-1\n");
-   for (int i = 0; i < 5; i++)
-   {
+   for (int i = 0; i < 5; i++) {
       printf("%d ", vet[i]);
    }
 
    printf("\n\nLetra 2D-2\n");
-   for (int i = 0; i < 5; i++)
-   {
+   for (int i = 0; i < 5; i++) {
       printf("%d ", *(vet + i));
    }
 
