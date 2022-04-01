@@ -3,10 +3,11 @@
 #include <stdlib.h>
 
    /**
-    * #### Função malloc ####
+    * #### Função calloc ####
     * Aloca e limpa o espaço alocado
     * A função vai pedir a S.O memórias baseado na tipo que foi pedido.
-    * calloc (n, sizeof(int));
+    * calloc (vet, n * sizeof(int)); -> nesse caso o ponteiro vet vai receber o valor ou 
+    * calloc (n, sizeof(int)); -> nesse caso o n vai multiplicar pelo valor
     * S.O me dê n blocos do tamanho de um inteiro e limpe tudo o que tem dentro
    **/
 
