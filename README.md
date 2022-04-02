@@ -14,6 +14,7 @@
 | Disciplina   | [Pagina](https://sites.google.com/a/cin.ufpe.br/if669ec/home?authuser=0)|  Ok |
 | Dv Monitoria | [Pagina](https://drive.google.com/drive/u/3/folders/1STo4COxHusk2v2W9XzXmIXLEzq7MO00W)|  Ok |
 | Monitoria    | [Pagina](https://site-monitoria.web.app/home)|  Ok |
+| Notas IP     | [Pagina](https://docs.google.com/spreadsheets/d/12zaq3LsBcZh9qMyFbs6gdU2_Y9qPn53Csj3eYwTA6fE/edit#gid=1658798658)|  Ok |
 | C Tutor      | [Pagina](https://pythontutor.com/c.html#mode=edit)| Ok|
 | The Huxley   | [Pagina](https://thehuxley.com/)|  Ok |
 | Aux Huxley   | [Pagina](https://huxleytestcases.herokuapp.com/)|  Ok |
