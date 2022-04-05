@@ -19,7 +19,7 @@ int main() {
       vet = (int *) realloc(vet, (n+1) * sizeof(int)); // Alocação Dinamica
       if (vet == NULL) { // Verificando a alocação
          printf("Erro Alocação!!\n");
-         exit(1); // O compilador demonstra o S.O que foi algum erro no programa.
+         exit(1); // O compilador demonstra ao S.O que foi algum erro no programa.
       }
       vet[n] = tmp; // Inserindo no local de n o valor tmp
       n++;
