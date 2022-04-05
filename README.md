@@ -8,6 +8,7 @@
 |:------------|:------|:-------|
 | Notion      | [Pagina](https://r0b14.notion.site/IF669-c7570ec489ce4413bcf3f9e540794889)|  Ok |
 | Documentação| [Pagina](https://devdocs.io/c/) |  Ok |
+| C - IME-USP | [Pagina](https://www.ime.usp.br/~pf/algoritmos/index.html#C-language)|  Ok |
  ### Links usados na disciplina
 |     Nome     | Link  | Status |
 |:------------ |:------|:-------|
