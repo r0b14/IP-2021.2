@@ -19,3 +19,16 @@
 | C Tutor      | [Pagina](https://pythontutor.com/c.html#mode=edit)| Ok|
 | The Huxley   | [Pagina](https://thehuxley.com/)|  Ok |
 | Aux Huxley   | [Pagina](https://huxleytestcases.herokuapp.com/)|  Ok |
+
+
+----------------------------
+
+
+# Problemas no Ubuntu 20.04
+
+### 1. GCC - não executava o programa.
+Para poder resolver o problema de não execução dos programas escritos em C/C++, é preciso que você instale o compilador gcc em seu usuário ubuntu.
+
+```
+sudo apt-get install gcc
+```
