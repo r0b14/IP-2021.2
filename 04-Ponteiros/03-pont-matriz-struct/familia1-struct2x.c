@@ -55,6 +55,7 @@ int main() {
    }
 
    //Imprimindo a estrutura
+   printf("====== Apresentando os representantes inseridos ======\n");
    for (int i = 0; i < TAM; i++)
    {
       printf("\n");
