@@ -13,7 +13,8 @@ typedef struct {
 
 
 
-int main() {
+int main()
+{
 
    Pessoa *familia = NULL;
    int verif = 1, tam, inserido = 0;
@@ -26,7 +27,8 @@ int main() {
       printf("4 - Sair de Familiares\n");
       scanf ("%d", &verif);
       // Verificando o operador
-      switch ( verif ) {
+      switch ( verif )
+      {
          case 1:
             /**
             fami
