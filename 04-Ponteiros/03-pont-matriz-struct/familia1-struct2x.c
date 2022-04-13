@@ -63,8 +63,17 @@ int main() {
       printf("altura= %.2f\n", familia[i].altura);
       printf("data de nascimento= %d/%d/%d\n", familia[i].dataNasci[0], familia[i].dataNasci[1], familia[i].dataNasci[2]);
    }
-
+   /**
+    * Liberação de memória
+    * É preciso fazer a liberação de forma castata
+    * Do ultimo para o primeiro. cima para baixo
+   **/
+   for (int i = 0; i < TAM; i++)
+   {
+      free(familia[i].dataNasci);
+   }
    free(familia);
+
    system("pause");
    return 0;
 }
