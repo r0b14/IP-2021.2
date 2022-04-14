@@ -17,11 +17,12 @@ void preenchevet( float vetor[TAM] )
 }
 float somaVet(float vetor[TAM])
 {
-   float soma;
-   for(int i = 0; i < 20; i++)
+   float soma = 0;
+   for(int i = 0; i < TAM; i++)
    {
       soma += vetor[i];
    }
+   return soma;
 }
 
 int main() {
