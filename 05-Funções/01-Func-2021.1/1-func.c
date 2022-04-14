@@ -39,5 +39,6 @@ int main() {
    soma = somaVet(vet);
    // 1. Intuito/Proposito -> Apresentar media aritmetica dos dados contidos no vetor
    printf("Media = %.2f", soma/TAM);
+
    return 0;
 }
