@@ -29,7 +29,7 @@ int main() {
       printf("Altura= ");
       scanf("%f", &familia[i].altura);
       familia[i].datanasci = (int *) malloc(3 * sizeof(int)); //quero 3 espaços do tamanho int
-      if(familia == NULL) {
+      if(familia[i].datanasci == NULL) {
          printf("Error for alocacion\n");
          exit(1);
       }
@@ -50,6 +50,9 @@ int main() {
       printf("data de nascimento= %d/%d/%d\n", familia[i].datanasci[0], familia[i].datanasci[1], familia[i].datanasci[2]);
    }
 
+   for(int i = 0; i < TAM; i++) {
+      free(familia[i].datanasci);
+   }
    free(familia);
    system("pause");
    return 0;
