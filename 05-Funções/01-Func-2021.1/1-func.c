@@ -3,7 +3,7 @@
 /**
  * Funções podem ou não retornarem valores. Isso pode influenciar diretamente na declaração da mesma.
  * Void -> quando ela não retorna diretamente um valor.
- * 
+ * Int -> Quando retorna um valor inteiror => 
  */
 #define TAM 3
 // Vetor é meramente formal -> ele está aqui para poder deixar coerente a forma que a funcao se organiza
