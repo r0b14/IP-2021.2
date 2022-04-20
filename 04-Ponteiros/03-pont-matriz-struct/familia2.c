@@ -3,7 +3,9 @@
 #include <stdlib.h>
 
 #define SIZE 30
-
+   /**
+    * A resolução deste programa foi repassadas para a pasta de funções
+   **/
 typedef struct {
    char nome[29];
    int idade;
