@@ -22,7 +22,7 @@ int main() {
    int x, y;
    printf("Digite 2 inteiros = ");
    scanf("%d %d", &x, &y);
-   mudandoNumeros(&x, &y); // Passagem por valor
+   mudandoNumeros(&x, &y); // Passagem por endereço
    printf("valores na main\n x = %d | y = %d\n", x, y);
    printf("enderecos na main\n x = %p | y = %p\n", &x, &y);
 
