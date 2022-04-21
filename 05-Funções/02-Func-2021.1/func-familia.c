@@ -11,21 +11,41 @@ typedef struct {
 } Pessoa;
 
 Pessoa *adcFamiliar(Pessoa *familiar, int *qtdFamiliar) {
-   int quantidade = 0, temp = 0;
+   int quantidade, i = 0;
    printf("Quantos familiares vc deseja adiciona: ");
    scanf("%d", &quantidade);
-   (*qtdFamiliar) += quantidade; 
-   for (int i = quantidade + temp; i < ; i++)
+   (*qtdFamiliar) += quantidade;
+   familiar = realloc(familiar, (*qtdFamiliar) * sizeof(Pessoa)); // Alocando a quantidade de pessoas a serem inseridas
+    if (familiar == NULL) // Verificando a alocação
    {
-      scanf("%d", )
+      printf("ERROR ALLOCATION!! :( \n");
+      exit(-1);
    }
-   temp += quantidade
+   for (i = (*qtdFamiliar) - quantidade ; i < (*qtdFamiliar) ; i++)
+   {
+      printf("Informacoes do %dº Familiar\n", i + 1);
+      printf("Nome: ");
+      scanf(" %29[^\n]", familiar[i].nome);
+      printf("Idade: ");
+      scanf("%d", &familiar[i].idade);
+      familiar[i].datanascimento = (int *) malloc(3 * sizeof(int));
+      if (familiar[i].datanascimento == NULL) {
+         printf("ERROR ALLOCATION!! :( \n");
+         exit(1);
+      }
+      printf("Data de nascimento= ");
+      scanf("%d/%d/%d", &familiar[i].datanascimento[0], &familiar[i].datanascimento[1], &familiar[i].datanascimento[2]);
+      printf("Altura ");
+      scanf("%f", familiar[i].altura);
+   }
+   //i += (*qtdFamiliar);
+   return familiar;
 }
 
 int main()
 {
    Pessoa *familia = NULL;
-   int verif = 0, tam, qtdFamiliar = 0;
+   int verif, tam, qtdFamiliar = 0;
    char nomeFamiliar[30];
    // É preciso que o programa rode pelo menos 1 vez
    do {
@@ -40,30 +60,30 @@ int main()
       switch ( verif )
       {
          case 1:
-            familia = adcFamiliar(nomeFamiliar, &qtdFamiliar);
-            /**
-            fami
-            printf("Digite 0 para poder sair do programa");
-            inserido += 1;
-            familia = (Pessoa *) realloc( ,1 * sizeof(Pessoa));
-            **/
-      break;
+            familia = adcFamiliar(familia, &qtdFamiliar);
+       break;
          case 2:
             // Excluir familiar
-      break;
+       break;
          case 3:
             // Mostrar Familiares
-      break;
+       break;
          case 0:
             // Sair de familiares
-      break;
+       break;
          default:
             printf("ERROR!\n\n");
             system("pause");
             system("cls");
-      break;
+       break;
       }
-   } while ( verif != 4 ); 
+   } while ( verif != 0 ); 
+
+   //Liberando memórias
+   for(int i = 0; i < qtdFamiliar; i++) {
+      free(familia[i].datanascimento);
+   }
+   free(familia);
 
    system("pause");
    return 0;
