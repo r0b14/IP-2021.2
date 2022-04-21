@@ -42,8 +42,11 @@ Pessoa *adcFamiliar(Pessoa *familiar, int *qtdFamiliar) {
    return familiar;
 }
 
-Pessoa *excluirFamiliar(Pessoa *familiar) {
-   
+Pessoa *excluirFamiliar(Pessoa *familiar, int *qtdFamiliares) {
+   int i;
+   for (i =0; i < (*qtdFamiliar); i++) {
+
+   }
 }
 
 int main()
@@ -56,8 +59,8 @@ int main()
       //MENU
       printf("\n\n======= MENU ========\n\n");
       printf("1 - Inserir familiar\n");
-      printf("2 - Excluir familiar\n");
-      printf("3 - Mostrar familiares\n");
+      printf("2 - Mostrar familiares\n");
+      printf("3 - Excluir familiar\n");
       printf("0 - Sair de Familiares\n");
       scanf ("%d", &verif);
       // Verificando o operador
@@ -67,10 +70,10 @@ int main()
             familia = adcFamiliar(familia, &qtdFamiliar);
             break;
          case 2:
-            // Excluir familiar
+            // Mostrar Familiares
        break;
          case 3:
-            // Mostrar Familiares
+            // Excluir familiar
        break;
          case 0:
             // Sair de familiares
