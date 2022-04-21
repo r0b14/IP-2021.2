@@ -14,9 +14,10 @@ Pessoa *adcFamiliar(Pessoa *familiar, int *qtdFamiliar) {
    int quantidade, i = 0;
    printf("Quantos familiares vc deseja adiciona: ");
    scanf("%d", &quantidade);
-   (*qtdFamiliar) += quantidade;
+   (*qtdFamiliar) = (*qtdFamiliar) + quantidade;
+
    familiar = realloc(familiar, (*qtdFamiliar) * sizeof(Pessoa)); // Alocando a quantidade de pessoas a serem inseridas
-    if (familiar == NULL) // Verificando a alocação
+   if (familiar == NULL) // Verificando a alocação
    {
       printf("ERROR ALLOCATION!! :( \n");
       exit(-1);
@@ -38,8 +39,11 @@ Pessoa *adcFamiliar(Pessoa *familiar, int *qtdFamiliar) {
       printf("Altura ");
       scanf("%f", familiar[i].altura);
    }
-   //i += (*qtdFamiliar);
    return familiar;
+}
+
+Pessoa *excluirFamiliar(Pessoa *familiar) {
+   
 }
 
 int main()
@@ -61,7 +65,7 @@ int main()
       {
          case 1:
             familia = adcFamiliar(familia, &qtdFamiliar);
-       break;
+            break;
          case 2:
             // Excluir familiar
        break;
