@@ -4,9 +4,11 @@
 
 int *remover(int *v, int index, int *nElementos)
 {
+   // numero de indices que possuo == 0
    if (*nElementos == 0){
       return NULL; // Nesse caso não há o que remover.
    }
+   // indice que desejo excluir >= numero de indices que possuo
    if (index >= *nElementos) {
       return v; // Index inválido.
    }
@@ -16,7 +18,7 @@ int *remover(int *v, int index, int *nElementos)
    }
    /* Realocamos */
    int *temp = v;
-   temp = (int *)realloc(temp, (*nElementos - 1) * sizeof(int));
+   temp = (int *) realloc(temp, (*nElementos - 1) * sizeof(int));
    if (temp == NULL && *nElementos != 1)
       exit(1);
 
@@ -35,7 +37,7 @@ int main()
       *(v + i) = i*2; // *(v + i) == v[i]
    }
 
-   printf("Item a remover: ");
+   printf("Indice do item a remover: ");
    scanf("%d", &index);
 
    //index não pode ser negativo, pois vai está verificando os indices do vetor
@@ -48,7 +50,17 @@ int main()
       }
       printf("\n");
 
+      /**
+       * v = ponteiro que contem os valores
+       * index = indice do elemento que vc deseja excluir
+       * n = o valor total dos elementos que possuo
+      **/
       v = remover(v, index, &n); // Função de remover.
+      /**
+       * v = com os valores atualizados e realocado para menos
+       * index = é retornado decrementado, pois foi removido um elemento
+       * n = é retornado com um valor diminuido pois os total de elementos vai ser decrementado
+      **/
 
       printf("2 - VETOR Suc: ");
       for (int i = 0; i < n; i++)
