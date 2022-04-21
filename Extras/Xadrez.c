@@ -151,7 +151,7 @@ int main()
                 } // mas custa nada botar, neh
             }
 
-        } // iso tudo foi so ler o que ja tinha no arquivo
+        } // isso tudo foi so ler o que ja tinha no arquivo
         MOSTRAR_TAB;
         fseek(jogo, 0, SEEK_END);
 
