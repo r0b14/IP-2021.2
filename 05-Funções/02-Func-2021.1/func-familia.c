@@ -32,12 +32,12 @@ Pessoa *adcFamiliar(Pessoa *familiar, int *qtdFamiliar) {
       familiar[i].datanascimento = (int *) malloc(3 * sizeof(int));
       if (familiar[i].datanascimento == NULL) {
          printf("ERROR ALLOCATION!! :( \n");
-         exit(1);
+         exit(-1);
       }
       printf("Data de nascimento= ");
       scanf("%d/%d/%d", &familiar[i].datanascimento[0], &familiar[i].datanascimento[1], &familiar[i].datanascimento[2]);
       printf("Altura ");
-      scanf("%f", familiar[i].altura);
+      scanf("%f", &familiar[i].altura);
    }
    return familiar;
 }
