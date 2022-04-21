@@ -103,6 +103,7 @@ char *batalha(Treinador **treinadores, char *nomeCompetidor1, char *nomeCompetid
 
     return winner;
 }
+
 void print_comp(Treinador *treinadores, int *qtdCmp)
 {
     for (int i = 0; i < (*qtdCmp); i++)
@@ -123,16 +124,17 @@ void print_comp(Treinador *treinadores, int *qtdCmp)
         printf("  Pontos: %d\n", treinadores[i].pontuacao);
     }
 }
+
 int main()
 {
 
     Treinador *competidores = NULL;
     Pokemon newPokemon;
-    int index1, index2;
-    char comp1[30], comp2[20];
-    char nomeComp[30];
+    int index1, index2; //
+    char nomeComp[30]; // Competidor
+    char comp1[30], comp2[20]; // Compeditores
     int qtdCompetidores = 0;
-    int op;
+    int op; // verificador de estatus
     do
     {
         printf("======= Menu =======\n");
