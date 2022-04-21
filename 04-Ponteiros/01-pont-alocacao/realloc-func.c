@@ -6,8 +6,8 @@
     * #### Função ralloc ####
     * Aloca para mais ou para menos espaço alocado que desejar
     * A função vai pedir ao S.O ou reduzir memórias baseado na requisão pedida.
-    * realloc (vet, n * sizeof(int)); -> nesse caso o ponteiro vet vai receber o valor ou 
     * realloc (n, sizeof(int)); -> nesse caso o n vai multiplicar pelo valor
+    * realloc (vet, n * sizeof(int)); -> nesse caso o ponteiro vet vai receber o valor ou 
     * S.O me dê n blocos do tamanho de um inteiro ou reduza n blocos do tamanho de um inteiro
    **/
 
