@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define N 2
+#define N 5
 
 int *remover(int *v, int index, int *nElementos)
 {
@@ -12,9 +12,13 @@ int *remover(int *v, int index, int *nElementos)
    if (index >= *nElementos) {
       return v; // Index inválido.
    }
-   /* Sobrepomos aquele elemento */
+   /**
+    * Sobrepomos aquele elemento
+    * Vai andar de forma crescente, só que sobreescrevendo os elementos.
+   **/
    for (int i = index; i < *nElementos - 1; i++) {
       v[i] = v[i + 1];
+      printf("%d ", v[i]);
    }
    /* Realocamos */
    int *temp = v;
@@ -55,7 +59,9 @@ int main()
        * index = indice do elemento que vc deseja excluir
        * n = o valor total dos elementos que possuo
       **/
+     printf("\n\n");
       v = remover(v, index, &n); // Função de remover.
+     printf("\n\n");
       /**
        * v = com os valores atualizados e realocado para menos
        * index = é retornado decrementado, pois foi removido um elemento
@@ -69,9 +75,21 @@ int main()
       }
       printf("\n");
 
-      printf("Item a remover:");
+      printf("Indice do item a remover: ");
       scanf("%d", &index);
    }
 
    return 0;
 }
+ 
+ //Descrição Básica sobre a função
+/**
+* index = 1 <-> i == 1
+* *nElementos = 3
+*				 1 <	(3 - 1) <-> 1 < 2
+* for (int i = index; i < *nElementos - 1; i++) {
+*
+*	v[i] = v[i + 1]; <-> v[1] = v[2]
+*
+*  }
+**/
