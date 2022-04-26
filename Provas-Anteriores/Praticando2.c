@@ -13,6 +13,7 @@ typedef struct{
 
 
 void cadastrarPessoas(Pessoa **ptr, int *qtd) {
+   //qtd = 0 e vai incrementando
    Pessoa aux;
 
    while (scanf("%d", &aux.codigo) && (aux.codigo != 0))

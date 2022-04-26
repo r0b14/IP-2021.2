@@ -11,6 +11,7 @@ typedef struct{
    int qt;
 } Pessoa;
 
+// Cadastrando pessoas
 void cadastrarPessoas(Pessoa **ptr, int *qtd) {
    Pessoa aux;
 
@@ -18,7 +19,7 @@ void cadastrarPessoas(Pessoa **ptr, int *qtd) {
    {
       printf("Digite o nome: ");
       scanf(" %29[^\n]", aux.nome);
-      printf("Digite o preço: ");
+      printf("Digite o preço: ");                                                                                                                          
       scanf("%lf", &aux.preco);
       printf("Digite a quantidade: ");
       scanf("%d", &aux.qt);
