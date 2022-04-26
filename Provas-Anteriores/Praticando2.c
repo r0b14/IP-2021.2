@@ -11,6 +11,7 @@ typedef struct{
    int qt;
 } Pessoa;
 
+
 void cadastrarPessoas(Pessoa **ptr, int *qtd) {
    Pessoa aux;
 
@@ -36,11 +37,40 @@ void cadastrarPessoas(Pessoa **ptr, int *qtd) {
 
 }
 
+//Funcao que cria um arquivo binario
+void gerarCentral(Pessoa *ptr, int qtd) {
+   /**
+    * W = Escrever no arquivo
+    * A = Adicionar ao final do arquivo
+    * R = Leitura do arquivo.
+   **/
+  // Funcao *fopen* abri o arqivo
+   FILE *arq = fopen("central.bin", "wb");
+   if (arq == NULL) {
+      printf("error for alocacion\n");
+      exit(-1);
+   }
+   /**
+    * 1 Parametro -> De onde voce quer escrever
+    * 2 Parametro -> O tamanho que vc quer escrever
+    * 3 Parametro -> Quantas vezes vai escrever esse tamanho
+    * 4 Parametro -> Onde voce quer escrever
+    */
+   // FUncao *fwrite* escreve no arquivo
+   fwrite(ptr, sizeof(Pessoa), qtd, arq);
+
+   fclose(arq);''
+}
+
+
 int main() {
    Pessoa *ptrPessoa = NULL;
    int qtd = 0;
 
    cadastrarPessoas(&ptrPessoa, &qtd);
+   gerarCentral(ptrPessoa, qtd);
+
+   // Printando o que temos na memória.
    printf("\nNo de pessoas: %d\n", qtd);
    for(int i = 0; i < qtd; i++)
    {
