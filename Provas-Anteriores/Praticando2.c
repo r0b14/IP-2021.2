@@ -59,16 +59,48 @@ void gerarCentral(Pessoa *ptr, int qtd) {
    // FUncao *fwrite* escreve no arquivo
    fwrite(ptr, sizeof(Pessoa), qtd, arq);
 
-   fclose(arq);''
+   fclose(arq);
 }
 
+void lerCentral(Pessoa **ptr, int *lidas) {
+   Pessoa aux;
+   FILE *arq = fopen("central.bin", "r");
+   if (arq == NULL) {
+      printf("error for alocacion\n");
+      exit(-1);
+   }
+   //            1       2            3   4
+   while (fread(&aux, sizeof(Pessoa), 1, arq) != 0)
+   {
+      /**
+       * 1 -> onde voce quer salvar o que ler
+       * 2 -> qual o tamanho que queres ler
+       * 3 -> quantas vezes voce quer ler esse tamanho
+       * 4 -> De onde voce quer ler
+      **/
+     (*ptr) = (Pessoa *) realloc((*ptr), (*qtd + 1) * sizeof(Pessoa))
+     if ((*ptr) != NULL) {
+        printf("error for alocacion\n");
+        exit(-1);
+     }
 
+   }
+
+   fclose(arq);
+
+}
 int main() {
    Pessoa *ptrPessoa = NULL;
-   int qtd = 0;
+   Pessoa *pLidas = NULL;
+   int qtd = 0, lidas = 0; // Contadores
 
    cadastrarPessoas(&ptrPessoa, &qtd);
+   
+   //Gerando Arquivo binario
    gerarCentral(ptrPessoa, qtd);
+
+   //
+   lerCentral(&pLidas, &lidas)
 
    // Printando o que temos na memória.
    printf("\nNo de pessoas: %d\n", qtd);
@@ -81,6 +113,7 @@ int main() {
    }
 
    free(ptrPessoa);
+   free(pLidas);
 
    return 0;
 }
