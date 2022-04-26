@@ -41,6 +41,8 @@ int main() {
    int qtd = 0;
 
    cadastrarPessoas(&ptrPessoa, &qtd);
+   
+   // Printando termos na memoria.
    printf("\nNo de pessoas: %d\n", qtd);
    for(int i = 0; i < qtd; i++)
    {
