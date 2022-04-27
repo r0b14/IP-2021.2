@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int* lerNumeros(int *numQtd, int *lista){
+int* lerNumeros(int *numQtd, int *lista) {
 
     int i;
     lista = (int*)realloc(lista, (*numQtd) * sizeof(int));
@@ -13,15 +13,15 @@ int* lerNumeros(int *numQtd, int *lista){
     }
     
     for(i = 0; i < *numQtd; i++){
-        printf("Digite o %d° numero: ", i+1);
+        printf("Digite o %dï¿½ numero: ", i+1);
         scanf("%d", &lista[i]);
     }
 
     return lista;
 }
 
-void criarArquivo(FILE *arqAux, int *numQtd, int *lista){
-    
+void criarArquivo(FILE *arqAux, int *numQtd, int *lista) {
+
     arqAux = fopen("Numeros.bin", "wb");
      if(arqAux == NULL){
         printf("Erro ao abrir o Arquivo");
