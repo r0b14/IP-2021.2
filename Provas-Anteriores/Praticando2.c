@@ -4,12 +4,12 @@
 
 #define SIZE 30
 
-typedef struct{
+typedef struct {
    int codigo;
    char nome[SIZE];
    double preco;
    int qt;
-} Pessoa;
+} Pessoa;   
 
 
 void cadastrarPessoas(Pessoa **ptr, int *qtd) {
