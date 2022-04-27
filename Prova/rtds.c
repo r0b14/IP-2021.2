@@ -20,10 +20,25 @@ typedef struct
 // Carrega o arquivo
 Transicao *carregaAutomato(char *nomeArqBin, long *numEstados) {
 
-
 }
 
 void gravaStatus(FILE *arqSaida, char *entrada, char status) {
+
+   //Gravar no arqsaida a string entrada seguida da frase e o status.
+   char temp[SIZE] = NULL;
+   strcpy(temp, entrada);
+   // feita a verificação
+   if (status == -1) {
+      strcat(temp, "-(erro de reconhecimento)");
+   } else if (status == 1) {
+      strcat(temp, "-(reconhecida)");
+   } else if (status == 0) {
+      strcat(temp, "-(não reconhecida)");
+   }
+   // Escrevendo a saida alterada conforme  o resultado da avalia Transicao
+   fputs(temp, arqSaida);
+   // Fechando arquivo
+   fclose(arqSaida);
 }
 
 long *localizaEstado(Transicao *automato, long numEstados, int estadoAtual, int *numEstadosAtuais, char qual) {
@@ -36,6 +51,7 @@ int avaliaTransicao(Transicao *automato, long numEstados, int estadoAtual, char 
 
 void reconhece(FILE *arqSaida, Transicao *automato, long numEstados, char *entrada) {
 
+   fclose(arqSaida);
 }
 
 int main() {
@@ -45,7 +61,7 @@ int main() {
    Transicao txtInserido;
    char txtUsario[SIZE], *pontTxtUsario = NULL, nomeArquivo[SIZENAME];
    long numEstados = 0; // Numero total de estados dentro do arquivos
-   int condicao, i = 0;
+   int condicao, i = 0, status;
 
    // Recebendo o nome do arquivo bin baseado na escolha do usuario
    printf("Digite o nome do arq binario: ");
@@ -78,14 +94,14 @@ int main() {
       (*pontTxtUsario)[i] = txtUsario;
       i++; // incrementando o valor de i
 
-      //Verificando o a string inserida pelo usuario
+      //Verificando o a string inserida pelo usuario e a condição dela
+      avaliaTransicao();
 
       //Enviando para o arquivo txt o resultado da string inserida
-      gravaStatus(arqTxt, &txtUsario, );
+      gravaStatus(arqTxt, &txtUsario, status);
 
       carregaAutomato();
       localizaEstado();
-      avaliaTransicao();
       reconhece();
    }
 

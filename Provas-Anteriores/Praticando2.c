@@ -102,7 +102,7 @@ int main() {
    int qtd = 0, lidas = 0; // Contadores
 
    cadastrarPessoas(&ptrPessoa, &qtd);
-   
+
    //Gerando Arquivo binario
    gerarCentral(ptrPessoa, qtd);
 
