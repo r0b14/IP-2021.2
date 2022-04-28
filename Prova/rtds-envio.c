@@ -163,7 +163,7 @@ int main()
          exit(-1);
       }
    }
-      /**}
+      /*}
       (*pontTxtUsario)[i] = txtUsario;
       i++; // incrementando o valor de i
 
@@ -177,6 +177,7 @@ int main()
       localizaEstado();
       reconhece();
    }
+   verificado...
 
    // Fechando os arquivos
    **/
