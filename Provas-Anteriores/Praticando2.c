@@ -9,7 +9,7 @@ typedef struct {
    char nome[SIZE];
    double preco;
    int qt;
-} Pessoa;   
+} Pessoa;
 
 
 void cadastrarPessoas(Pessoa **ptr, int *qtd) {
@@ -86,7 +86,7 @@ void lerCentral(Pessoa **ptr, int *lidas) {
         printf("error for alocacion\n");
         exit(-1);
      }
-   
+
       (*ptr)[*lidas] = aux; // alterando o valor de ptr na posição lidas => ptr[lidas]
       (*lidas)++; // Incrementando o valor em lidas
    }
