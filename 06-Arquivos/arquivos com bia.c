@@ -83,6 +83,7 @@ void criarArquivoPares(FILE *arqPares, int *qtdPares, int *lista)
   fwrite(lista, sizeof(int), *qtdPares, arqPares);
   fclose(arqPares);
 }
+
 void lerArquivoPares(FILE *arqPares, int *qtdPares, int *listaPares)
 {
 
