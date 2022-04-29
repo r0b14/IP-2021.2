@@ -20,7 +20,6 @@ typedef struct
 // Carrega o arquivo
 Transicao *carregaAutomato(char *nomeArqBin, long *numEstados)
 {
-   /**
    // Variaveis auxiliares
    Transicao *varAux = NULL;
    Transicao cont;
@@ -162,8 +161,7 @@ int main()
          printf("Error for alocacion\n");
          exit(-1);
       }
-   }
-      /*}
+
       (*pontTxtUsario)[i] = txtUsario;
       i++; // incrementando o valor de i
 
@@ -177,10 +175,9 @@ int main()
       localizaEstado();
       reconhece();
    }
-   verificado...
 
    // Fechando os arquivos
-   **/
+
    fclose(arqTxt);
    fclose(arqBin);
    return 0;
