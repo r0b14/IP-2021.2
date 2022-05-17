@@ -2,152 +2,127 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define SIZE 30
-
-typedef struct {
+typedef struct
+{
    int codigo;
-   char nome[SIZE];
-   int idade;
-   float altura;
-   float peso;
+   char nome[40];
+   double preco;
+   int qt;
 } Pessoa;
 
-void menu() {
-   printf("1 - Cadastrar Usuario\n");
-   printf("2 - Mostrar Usuarios\n");
-   printf("3 - Excluir Usuario\n");
-   printf("0 - Exit Program\n");
-}
-
-void cadastrarPessoas(Pessoa **ptr,int *qtd){
+void cadastrarPessoas(Pessoa **ptr, int *qtd)
+{
    Pessoa aux;
-   int qtdUsuarios = 0, i;
-   /**
-    * 1. ler para uma memoria aux -- Pessoa aux
-    * 2. Alocar a Memoria
-    * 3. Passar da Memoria aux para a memoria alocada
-   **/
-   // Cadastrando a pessoa
-   printf("Quantos usuarios deseja inserir: ");
-   scanf("%d", &qtdUsuarios);
+   Pessoa *p = NULL;
+   // ler para uma memoria aux
+   // Alocar a memoria
+   // Passar da memoria aux pra memoria alocada
 
-   // Condição de parada
-   for (i = (*qtd); i < (*qtd) + qtdUsuarios; i++) {
-      // 1. Passo
-      printf("Digite o Codigo: ");
-      scanf("%d", &aux.codigo);
-      printf("Digite o nome: ");
-      scanf(" %29[^\n]", aux.nome);
-      printf("Digite a idade: ");
-      scanf("%d", &aux.idade);
-      printf("Digite a altura: ");
-      scanf("%f", &aux.altura);
-      printf("Digite o peso: ");
-      scanf("%f", &aux.peso);
-      // aux está preenchido
-
-      // 2. Passo
-      (*ptr) = (Pessoa *) realloc((*ptr), (i + 1) * sizeof(Pessoa));
-      if ((*ptr) == NULL) {
-         printf("ERROR ALLOCATION!! :( \n");
-         exit(-1);
-      }
-
-      // 3. Passo
-      // Ptr na posicao i recebe o valor de aux.
-      (*ptr)[i] = aux;
-   }
-
-   (*qtd) = qtdUsuarios;
-}
-
-void mostrarPessoas(Pessoa *pessoas, int *qtd) {
-   int i;
-   for(i = 0; i < (*qtd); i++ ) {
-      printf("Usuario %d", i+1);
-      printf("Codigo: %d\n", pessoas[i].codigo);
-      printf("Nome: %s\n", pessoas[i].nome);
-      printf("Idade: %d\n", pessoas[i].idade);
-      printf("Altura: %.2f\n", pessoas[i].altura);
-      printf("Peso: %.2f\n\no", pessoas[i].peso);
-   }
-}
-
-void excluindoPessoa(Pessoa *pessoas, int *qtd) {
-   int i, posicao, tamVet;
-   printf("Digite qual a posicao do elemento que voce deseja excluir: ");
-   scanf("%d", &posicao);
-
-   tamVet = sizeof(pessoas);
-   // numero de indices que possuo == 0
-   if (tamVet == 0)
+   printf("Entre com o codigo\n");
+   while (scanf("%d", &aux.codigo) && (aux.codigo != 0))
    {
-      return NULL; // Nesse caso não há o que remover.
-   }
-   // indice que desejo excluir >= numero de indices que possuo
-   if (posicao >= tamVet)
-   {
-      return ; // Index inválido.
-   }
-   /**
-    * Sobrepomos aquele elemento
-    * Vai andar de forma crescente, só que sobreescrevendo os elementos.
-    **/
-   for (int i = index; i < *nElementos - 1; i++)
-   {
-      v[i] = v[i + 1];
-      printf("%d ", v[i]);
-   }
-   /* Realocamos */
-   int *temp = v;
-   temp = (int *)realloc(temp, (*nElementos - 1) * sizeof(int));
-   if (temp == NULL && *nElementos != 1)
-      exit(1);
+      printf("Entre com o nome\n");
+      scanf(" %39[^\n]", aux.nome);
+      printf("Entre com o preco\n");
+      scanf("%lf", &aux.preco);
+      printf("Entre com a quantidade\n");
+      scanf("%d", &aux.qt);
 
-   (*nElementos)--;
-
-   return temp; // Retornamos o ponteiro
-
-}
-
-int main() {
-   Pessoa *usuario = NULL;
-   int qtd = 0, verif, posicao = 0;
-
-   // Funcao que cadastra pessoas
-   // Nessa ocasião estamos enviando um ponteiro, logo é preciso usar ponteiro duplo no parametro 
-   do {
-      printf("--- Usuarios LTDA ---\n\n");
-      menu();
-      scanf("%d", &verif);
-      switch (verif)
+      // Realizando a alocação
+      (*ptr) = (Pessoa *)realloc((*ptr), (*qtd + 1) * sizeof(Pessoa));
+      if ((*ptr) == NULL)
       {
-         // Adicionar Usuario
-         case 1:
-         cadastrarPessoas(&usuario, &qtd);
-         break;
-         // Mostrar as pessoas cadastradas
-         case 2:
-         mostrarPessoas(usuario, &qtd);
-         break;
-         // Excluindo usuario
-         case 3:
-         excluindoPessoa(usuario, &qtd);
-         break;
-         // Sair do programa
-         case 0:
-
-         break;
-
-         default:
-         printf("ERROR!\n\n");
+         printf("Erro ao alocar\n");
          exit(-1);
-         break;
       }
 
-   } while (verif != 0);
+      (*ptr)[*qtd] = aux;
+      (*qtd)++;
+      // p[x] = 10;
+      printf("Entre com o codigo\n");
+   }
 
-   free(usuario);
+   //***P -> **p **p -> *p *p -> p p p  p
+   // p = &a;
+   //(*p) = 100;
+}
+
+void gerarCentral(Pessoa *ptr, int i)
+{
+
+   FILE *arq = fopen("central.bin", "w");
+   if (arq == NULL)
+   {
+      printf("Erro ao abrir o arq\n");
+      exit(-1);
+   }
+   // w escrever
+   // a adicionar ao final do arq
+   // r leitura
+   fwrite(ptr, sizeof(Pessoa), i, arq);
+   // &i, sizeof(int), 1, arq
+   // 1 parametro = De onde vc quer escrever
+   // 2 parametro = O tamanho que vc quer escrever
+   // 3 parametro = Quantas vezes vai escrever esse tamanho
+   // 4 parametro = Onde vc quer escrever
+
+   fclose(arq);
+}
+
+void lerCentral(Pessoa **ptr, int *qt)
+{
+   Pessoa aux;
+   FILE *arq = fopen("central.bin", "r");
+   if (arq == NULL)
+   {
+      printf("Erro ao abrir o arq\n");
+      exit(-1);
+   }
+
+   while (fread(&aux, sizeof(Pessoa), 1, arq) != 0)
+   {
+      // 1 = Onde vc quer salvar  o que ler
+      // 2 = Qual o tamanho que queres ler
+      // 3 = quantas vezes vc quer ler esse tamanho
+      // 4 = De onde vc quer ler
+
+      (*ptr) = (Pessoa *)realloc((*ptr), (*qt + 1) * sizeof(Pessoa));
+      if ((*ptr) == NULL)
+      {
+         printf("Erro ao alocar\n");
+         exit(-1);
+      }
+
+      (*ptr)[*qt] = aux;
+      (*qt)++;
+   }
+
+   fclose(arq);
+}
+
+int main()
+{
+   Pessoa *ptrPessoa = NULL;
+   Pessoa *pLidas = NULL;
+   int qtd = 0, i, lidas = 0;
+
+   cadastrarPessoas(&ptrPessoa, &qtd);
+
+   gerarCentral(ptrPessoa, qtd);
+
+   lerCentral(&pLidas, &lidas);
+
+   printf("%d pessoas foram lidas\n", lidas);
+   for (i = 0; i < lidas; i++)
+   {
+      printf("Nome: %s\n", pLidas[i].nome);
+      printf("Codigo: %d\n", pLidas[i].codigo);
+      printf("Preco: %.2lf\n", pLidas[i].preco);
+      printf("QTD: %d\n", pLidas[i].qt);
+   }
+
+   free(ptrPessoa);
+   free(pLidas);
 
    return 0;
 }
