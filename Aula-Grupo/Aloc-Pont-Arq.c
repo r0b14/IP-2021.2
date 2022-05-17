@@ -79,19 +79,25 @@ void gerarArquivo(Pessoa *ptrPessoa, int *qtdPessoas) {
 int main() {
 
    Pessoa *ptrPessoa = NULL;
+   Pessoa *pLidas = NULL; // Pessoas que foram lidas no arquivo
    int qtd = 0; // Por ser uma estrutura dinâmica, precisamos usar um contador => aumenta o diminui
-   int i;
+   int i, lidas = 0;
 
    // Mostrando as opções aos usuarios
    menu();
 
    // Cadastrando pessoas em um ponteiro dinamico
    cadastrarPessoas(&ptrPessoa, &qtd); // Sempre que passar o endereço de algo, usar um * na funcao
+
    // Gerando arquivo binario
    /**
     * A intenção é só abastecer o arquivo
    **/
    gerarArquivo(ptrPessoa, &qtd);
+
+   /**
+    * é preciso pegar o que tem no arquivo e passar para um ponterio.
+   **/
    // Mostrando as pessoas que foram cadastradas (aloc dinamica)
    printf("%d pessoas foram lidas\n", qtd);
    for (i = 0; i < qtd; i++) {
