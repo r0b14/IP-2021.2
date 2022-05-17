@@ -50,14 +50,14 @@ void cadastrarPessoas(Pessoa **ptrPessoa, int *qtd) {
    }
 }
 
-void gerarArquivo(Pessoa *ptrPessoa, int *qtdPessoas) {
+void gerarArquivo(Pessoa *ptrPessoa, int qtdPessoas) {
    /**
     * W = Escrever no arquivo | ele apaga o que tinha antes e escreve o que mando
     * A = Adicionar o que desejo ao final do arquivo
     * R = Leitura do arquivo.
    **/
    // Funcao *fopen* abri o arquivo
-   FILE *arq = fopen("Pessoas.bin", "wb"); // Criar e abrir o arquivo
+   FILE *arq = fopen("Pessoas.bin", "w"); // Criar e abrir o arquivo
    if (arq == NULL) {
       printf("Error ao abrir o arquivo\n");
       exit(-1);
@@ -76,6 +76,37 @@ void gerarArquivo(Pessoa *ptrPessoa, int *qtdPessoas) {
    fclose(arq);
 }
 
+// Está passando tudo que tem em um arquivo para um ponteiro e que possa demonstrar o que tem dentro
+void lerArquivo(Pessoa **ptrPessoa, int *lidas) {
+   Pessoa aux;
+   // Funcao *fopen* abri o arquivo
+   FILE *arq = fopen("Pessoas.bin", "r"); // Lenado arquivo
+   if (arq == NULL) {
+      printf("Error ao abrir o arquivo\n");
+      exit(-1);
+   }
+
+   //            1       2            3   4
+   while (fread(&aux, sizeof(Pessoa), 1, arq) != 0) { // 0 ou EOF
+      /**
+       * 1 -> onde voce quer salvar o que ler
+       * 2 -> qual o tamanho que queres ler
+       * 3 -> quantas vezes voce quer ler esse tamanho
+       * 4 -> De onde voce quer ler
+      **/
+     // Eu quero saber quem ptrPessoa está apontando.
+     (*ptrPessoa) = (Pessoa *) realloc((*ptrPessoa), (*lidas + 1) * sizeof(Pessoa));
+     if ((*ptrPessoa) == NULL) {
+        printf("error for alocacion\n");
+        exit(-1);
+     }
+
+      (*ptrPessoa)[*lidas] = aux; // alterando o valor de ptr na posição lidas => ptr[lidas]
+      (*lidas)++; // Incrementando o valor em lidas
+   }
+   fclose(arq);
+}
+
 int main() {
 
    Pessoa *ptrPessoa = NULL;
@@ -84,7 +115,7 @@ int main() {
    int i, lidas = 0;
 
    // Mostrando as opções aos usuarios
-   menu();
+   //menu();
 
    // Cadastrando pessoas em um ponteiro dinamico
    cadastrarPessoas(&ptrPessoa, &qtd); // Sempre que passar o endereço de algo, usar um * na funcao
@@ -93,21 +124,24 @@ int main() {
    /**
     * A intenção é só abastecer o arquivo
    **/
-   gerarArquivo(ptrPessoa, &qtd);
+   gerarArquivo(ptrPessoa, qtd);
 
    /**
     * é preciso pegar o que tem no arquivo e passar para um ponterio.
    **/
+   lerArquivo(&pLidas, &lidas);
+
    // Mostrando as pessoas que foram cadastradas (aloc dinamica)
-   printf("%d pessoas foram lidas\n", qtd);
-   for (i = 0; i < qtd; i++) {
-      printf("Nome: %s\n", ptrPessoa[i].nome);
-      printf("Codigo: %d\n", ptrPessoa[i].codigo);
-      printf("Preco: %.2lf\n", ptrPessoa[i].preco);
-      printf("QTD: %d\n", ptrPessoa[i].qtd);
+   printf("%d pessoas foram lidas\n", lidas);
+   for (i = 0; i < lidas; i++) {
+      printf("Nome: %s\n", pLidas[i].nome);
+      printf("Codigo: %d\n", pLidas[i].codigo);
+      printf("Preco: %.2lf\n", pLidas[i].preco);
+      printf("QTD: %d\n", pLidas[i].qtd);
    }
 
    free(ptrPessoa);
+   free(pLidas);
 
    return 0;
 }
