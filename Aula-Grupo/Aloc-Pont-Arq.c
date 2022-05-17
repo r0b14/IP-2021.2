@@ -2,125 +2,77 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct
-{
+typedef struct {
    int codigo;
    char nome[40];
    double preco;
-   int qt;
+   int qtd;
 } Pessoa;
 
-void cadastrarPessoas(Pessoa **ptr, int *qtd)
-{
-   Pessoa aux;
-   Pessoa *p = NULL;
-
-   // ler para uma memoria aux
-   // Alocar a memoria
-   // Passar da memoria aux pra memoria alocada
-   printf("Entre com o codigo\n");
-   while (scanf("%d", &aux.codigo) && (aux.codigo != 0))
-   {
-      printf("Entre com o nome\n");
-      scanf(" %39[^\n]", aux.nome);
-      printf("Entre com o preco\n");
-      scanf("%lf", &aux.preco);
-      printf("Entre com a quantidade\n");
-      scanf("%d", &aux.qt);
-
-      // Realizando a alocação
-      (*ptr) = (Pessoa *) realloc((*ptr), (*qtd + 1) * sizeof(Pessoa));
-      if ((*ptr) == NULL) {
-         printf("Erro ao alocar\n");
-         exit(-1);
-      }
-
-      (*ptr)[*qtd] = aux; // *ptr[qtd] = aux
-      (*qtd)++; // 
-      // p[x] = 10;
-      printf("Entre com o codigo\n");
-   }
-
-   //***P -> **p **p -> *p *p -> p p p  p
-   // p = &a;
-   //(*p) = 100;
+void menu() {
+   printf(" --- Cadastra Pessoas --- \n");
+   printf("1 - Cadastrar Pessoas\n");
+   printf("2 - Vizualizar Pessoas\n");
+   printf("0 - Exit Programa\n");
 }
-
-// Gerando arquivo binario
-//                 Abastecendo , qtd
-void gerarArquivo(Pessoa *ptr, int i) {
-
-   // fopen "nome do arquivo.tipo arquivo", "parametro que deseja"
-   FILE *arq = fopen("central.bin", "w");
-   if (arq == NULL) {
-      printf("Erro ao abrir o arq\n");
-      exit(-1);
-   }
+// Void porque não preciso retornar nada na main e sim só na memória
+void cadastrarPessoas(Pessoa **ptrAux, int *qtd) {
+   Pessoa aux; // Essa estrutura é local, a partir daí é que inserimos no ponteiro
    /**
-    * w escrever
-    * a adicionar ao final do arq
-    * r leitura
+    * 1. ler para uma memoria aux
+    * 2. Alocar a Memoria
+    * 3. Passar da Memoria aux para a memoria alocada
    **/
-   // Escrita 
-   fwrite(ptr, sizeof(Pessoa), i, arq);
-   // &i, sizeof(int), 1, arq
-   // 1 parametro = De onde vc quer escrever
-   // 2 parametro = O tamanho que vc quer escrever
-   // 3 parametro = Quantas vezes vai escrever o tamanho referenciado no 2
-   // 4 parametro = Onde vc quer escrever
+   /**
+      p = &a -> P está recebendo o endereço de a
+      (*p) = 100; -> quem está sendo apontado por p recebe o valor de 100
+   **/
+  // 1. Lendo e inserindo em uma memoria aux
+   while ( scanf("%d", &aux.codigo) && (aux.codigo != 0))
+   {
+      printf("Nome: ");
+      scanf(" %39[^\n]", aux.nome);
+      printf("Preço: ");
+      scanf("%lf", &aux.preco);
+      printf("Qtd: ");
+      scanf("%d", &aux.qtd);
 
-   fclose(arq);
-}
-
-void lerArquivo(Pessoa **ptr, int *qt) {
-
-   Pessoa aux;
-   FILE *arq = fopen("central.bin", "r");
-   if (arq == NULL) {
-      printf("Erro ao abrir o arq\n");
-      exit(-1);
-   }
-
-   while ( fread(&aux, sizeof(Pessoa), 1, arq) != 0) {
-
-      // 1 = Onde vc quer salvar  o que ler
-      // 2 = Qual o tamanho que queres ler
-      // 3 = quantas vezes vc quer ler esse tamanho
-      // 4 = De onde vc quer ler
-
-      (*ptr) = (Pessoa *) realloc((*ptr), (*qt + 1) * sizeof(Pessoa));
-      if ((*ptr) == NULL) {
-         printf("Erro ao alocar\n");
+      // 2. Realizando a alocação -> vamos usar quem ptrAux está apontando, nesse caso ptrPessoa(main).
+      (*ptrAux) = (Pessoa *) realloc((*ptrAux), (*qtd + 1) * sizeof(Pessoa));
+      if ((*ptrAux) == NULL) {
+         printf("Error for alocation\n");
          exit(-1);
       }
 
-      (*ptr)[*qt] = aux;
-      (*qt)++;
+      // 3. Passando da memoria aux para memoria do main
+      (*ptrAux)[*qtd] = aux; // na posicao inserindo uma pessoa
+      (*qtd)++; // Incrementou a quantidade de pessoa
    }
-
-   fclose(arq);
+   
 }
 
-int main(){
+int main()
+{
    Pessoa *ptrPessoa = NULL;
-   Pessoa *pLidas = NULL;
-   int qtd = 0, i, lidas = 0;
+   int qtd = 0; // Por ser uma estrutura dinâmica, precisamos usar um contador => aumenta o diminui
+   int i;
 
-   // Cadastrando pessoas em um ponteiro dinamico 
-   cadastrarPessoas(&ptrPessoa, &qtd);
-   gerarArquivo(ptrPessoa, qtd);
-     lerArquivo(&pLidas, &lidas);
+   // Mostrando as opções aos usuarios
+   menu();
 
-   printf("%d pessoas foram lidas\n", lidas);
-   for (i = 0; i < lidas; i++) {
-      printf("Nome: %s\n", pLidas[i].nome);
-      printf("Codigo: %d\n", pLidas[i].codigo);
-      printf("Preco: %.2lf\n", pLidas[i].preco);
-      printf("QTD: %d\n", pLidas[i].qt);
+   // Cadastrando pessoas em um ponteiro dinamico
+   cadastrarPessoas(&ptrPessoa, &qtd); // Sempre que passar o endereço de algo, usar um * na funcao
+
+   // Mostrando as pessoas que foram cadastradas (aloc dinamica)
+   printf("%d pessoas foram lidas\n", qtd);
+   for (i = 0; i < qtd; i++) {
+      printf("Nome: %s\n", ptrPessoa[i].nome);
+      printf("Codigo: %d\n", ptrPessoa[i].codigo);
+      printf("Preco: %.2lf\n", ptrPessoa[i].preco);
+      printf("QTD: %d\n", ptrPessoa[i].qtd);
    }
 
    free(ptrPessoa);
-   free(pLidas);
 
    return 0;
 }
