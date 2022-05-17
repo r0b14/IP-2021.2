@@ -15,7 +15,6 @@ typedef struct {
 void menu() {
    printf("1 - Cadastrar Usuario\n");
    printf("2 - Mostrar Usuarios\n");
-   printf("3 - Excluir Usuario\n");
    printf("0 - Exit Program\n");
 }
 
@@ -62,51 +61,19 @@ void cadastrarPessoas(Pessoa **ptr,int *qtd){
 }
 
 void mostrarPessoas(Pessoa *pessoas, int *qtd) {
-   int i;
-   for(i = 0; i < (*qtd); i++ ) {
-      printf("Usuario %d", i+1);
+   int qtdUsuarios = 0, i = 0;
+   qtdUsuarios = (*qtd);
+   while(qtdUsuarios != 0)
+   {
+      printf("Usuario %d\n", i+1);
       printf("Codigo: %d\n", pessoas[i].codigo);
       printf("Nome: %s\n", pessoas[i].nome);
       printf("Idade: %d\n", pessoas[i].idade);
       printf("Altura: %.2f\n", pessoas[i].altura);
       printf("Peso: %.2f\n\no", pessoas[i].peso);
+      qtdUsuarios--;
+      i++;
    }
-}
-
-void excluindoPessoa(Pessoa *pessoas, int *qtd) {
-   int i, posicao, tamVet;
-   printf("Digite qual a posicao do elemento que voce deseja excluir: ");
-   scanf("%d", &posicao);
-
-   tamVet = sizeof(pessoas);
-   // numero de indices que possuo == 0
-   if (tamVet == 0)
-   {
-      return NULL; // Nesse caso não há o que remover.
-   }
-   // indice que desejo excluir >= numero de indices que possuo
-   if (posicao >= tamVet)
-   {
-      return ; // Index inválido.
-   }
-   /**
-    * Sobrepomos aquele elemento
-    * Vai andar de forma crescente, só que sobreescrevendo os elementos.
-    **/
-   for (int i = index; i < *nElementos - 1; i++)
-   {
-      v[i] = v[i + 1];
-      printf("%d ", v[i]);
-   }
-   /* Realocamos */
-   int *temp = v;
-   temp = (int *)realloc(temp, (*nElementos - 1) * sizeof(int));
-   if (temp == NULL && *nElementos != 1)
-      exit(1);
-
-   (*nElementos)--;
-
-   return temp; // Retornamos o ponteiro
 
 }
 
@@ -124,24 +91,20 @@ int main() {
       {
          // Adicionar Usuario
          case 1:
-         cadastrarPessoas(&usuario, &qtd);
+            cadastrarPessoas(&usuario, &qtd);
          break;
          // Mostrar as pessoas cadastradas
          case 2:
-         mostrarPessoas(usuario, &qtd);
-         break;
-         // Excluindo usuario
-         case 3:
-         excluindoPessoa(usuario, &qtd);
+            mostrarPessoas(usuario, &qtd);
          break;
          // Sair do programa
          case 0:
-
+            exit(1);
          break;
 
          default:
-         printf("ERROR!\n\n");
-         exit(-1);
+            printf("ERROR!\n\n");
+            exit(-1);
          break;
       }
 
