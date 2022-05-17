@@ -46,47 +46,50 @@ void cadastrarPessoas(Pessoa **ptr, int *qtd)
    //(*p) = 100;
 }
 
-void gerarCentral(Pessoa *ptr, int i)
-{
+// Gerando arquivo binario
+//                 Abastecendo , qtd
+void gerarArquivo(Pessoa *ptr, int i) {
 
+   // fopen "nome do arquivo.tipo arquivo", "parametro que deseja"
    FILE *arq = fopen("central.bin", "w");
-   if (arq == NULL)
-   {
+   if (arq == NULL) {
       printf("Erro ao abrir o arq\n");
       exit(-1);
    }
-   // w escrever
-   // a adicionar ao final do arq
-   // r leitura
+   /**
+    * w escrever
+    * a adicionar ao final do arq
+    * r leitura
+   **/
+   // Escrita 
    fwrite(ptr, sizeof(Pessoa), i, arq);
    // &i, sizeof(int), 1, arq
    // 1 parametro = De onde vc quer escrever
    // 2 parametro = O tamanho que vc quer escrever
-   // 3 parametro = Quantas vezes vai escrever esse tamanho
+   // 3 parametro = Quantas vezes vai escrever o tamanho referenciado no 2
    // 4 parametro = Onde vc quer escrever
 
    fclose(arq);
 }
 
-void lerCentral(Pessoa **ptr, int *qt)
-{
+void lerArquivo(Pessoa **ptr, int *qt) {
+
    Pessoa aux;
    FILE *arq = fopen("central.bin", "r");
-   if (arq == NULL)
-   {
+   if (arq == NULL) {
       printf("Erro ao abrir o arq\n");
       exit(-1);
    }
 
-   while (fread(&aux, sizeof(Pessoa), 1, arq) != 0)
-   {
+   while ( fread(&aux, sizeof(Pessoa), 1, arq) != 0) {
+
       // 1 = Onde vc quer salvar  o que ler
       // 2 = Qual o tamanho que queres ler
       // 3 = quantas vezes vc quer ler esse tamanho
       // 4 = De onde vc quer ler
-      (*ptr) = (Pessoa *)realloc((*ptr), (*qt + 1) * sizeof(Pessoa));
-      if ((*ptr) == NULL)
-      {
+
+      (*ptr) = (Pessoa *) realloc((*ptr), (*qt + 1) * sizeof(Pessoa));
+      if ((*ptr) == NULL) {
          printf("Erro ao alocar\n");
          exit(-1);
       }
@@ -98,22 +101,18 @@ void lerCentral(Pessoa **ptr, int *qt)
    fclose(arq);
 }
 
-int main()
-{
+int main(){
    Pessoa *ptrPessoa = NULL;
    Pessoa *pLidas = NULL;
    int qtd = 0, i, lidas = 0;
 
    // Cadastrando pessoas em um ponteiro dinamico 
    cadastrarPessoas(&ptrPessoa, &qtd);
-
-   gerarCentral(ptrPessoa, qtd);
-
-   lerCentral(&pLidas, &lidas);
+   gerarArquivo(ptrPessoa, qtd);
+     lerArquivo(&pLidas, &lidas);
 
    printf("%d pessoas foram lidas\n", lidas);
-   for (i = 0; i < lidas; i++)
-   {
+   for (i = 0; i < lidas; i++) {
       printf("Nome: %s\n", pLidas[i].nome);
       printf("Codigo: %d\n", pLidas[i].codigo);
       printf("Preco: %.2lf\n", pLidas[i].preco);
