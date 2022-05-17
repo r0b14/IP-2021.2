@@ -61,18 +61,14 @@ void cadastrarPessoas(Pessoa **ptr,int *qtd){
 }
 
 void mostrarPessoas(Pessoa *pessoas, int *qtd) {
-   int qtdUsuarios = 0, i = 0;
-   qtdUsuarios = (*qtd);
-   while(qtdUsuarios != 0)
-   {
+   int i;
+   for (i = 0; i < (*qtd); i++){
       printf("Usuario %d\n", i+1);
       printf("Codigo: %d\n", pessoas[i].codigo);
       printf("Nome: %s\n", pessoas[i].nome);
       printf("Idade: %d\n", pessoas[i].idade);
       printf("Altura: %.2f\n", pessoas[i].altura);
       printf("Peso: %.2f\n\no", pessoas[i].peso);
-      qtdUsuarios--;
-      i++;
    }
 
 }
