@@ -13,13 +13,13 @@ typedef struct {
 } Pessoa;
 
 void menu() {
-   printf("\n1 - Adicionar Usuario\n");
+   printf("1 - Adicionar Usuario\n");
    printf("2 - Adicionar Usuario\n");
    printf("3 - Adicionar Usuario\n");
    printf("0 - Exit Program\n");
 }
 
-void cadastrarPessoa(Pessoa **ptr,int *qtd){
+void cadastrarPessoas(Pessoa **ptr,int *qtd){
    Pessoa aux;
    int qtdUsuarios = 0, i;
    /**
@@ -37,7 +37,7 @@ void cadastrarPessoa(Pessoa **ptr,int *qtd){
       printf("Digite o Codigo: ");
       scanf("%d", &aux.codigo);
       printf("Digite o nome: ");
-      scanf(" %(SIZE-1)[^\n]", aux.nome);
+      scanf(" %29[^\n]", aux.nome);
       printf("Digite a idade: ");
       scanf("%d", &aux.idade);
       printf("Digite a altura: ");
@@ -47,42 +47,66 @@ void cadastrarPessoa(Pessoa **ptr,int *qtd){
       // aux está preenchido
 
       // 2. Passo
-      (*ptr) = (Pessoa *) realloc((*ptr), (*qtd + 1) * sizeof(Pessoa));
+      (*ptr) = (Pessoa *) realloc((*ptr), (i + 1) * sizeof(Pessoa));
       if ((*ptr) == NULL) {
          printf("ERROR ALLOCATION!! :( \n");
          exit(-1);
       }
+
+      // 3. Passo
+      // Ptr na posicao i recebe o valor de aux.
+      (*ptr)[i] = aux;
    }
+
    (*qtd) = qtdUsuarios;
+}
+
+void mostrarPessoas(Pessoa *pessoas, int *qtd) {
+   int i;
+   for(i = 0; i < (*qtd); i++ ) {
+      printf("Usuario %d", i+1);
+      printf("Codigo: %d\n", pessoas[i].codigo);
+      printf("Nome: %s\n", pessoas[i].nome);
+      printf("Idade: %d\n", pessoas[i].idade);
+      printf("Altura: %.2f\n", pessoas[i].altura);
+      printf("Peso: %.2f\n\no", pessoas[i].peso);
+   }
 }
 
 int main() {
    Pessoa *usuario = NULL;
-   int qtd = 0, verif = 0;
+   int qtd = 0, verif;
 
-   //Funcao que cadastra pessoas
-   /**
-    * Nessa ocasião estamos enviando um ponteiro, logo é preciso usar ponteiro duplo no parametro 
-    */
+   // Funcao que cadastra pessoas
+   // Nessa ocasião estamos enviando um ponteiro, logo é preciso usar ponteiro duplo no parametro 
    do {
-      printf("--- Usuarios LTDA ---");
+      printf("--- Usuarios LTDA ---\n\n");
       menu();
       scanf("%d", &verif);
       switch (verif)
       {
          // Adicionar Usuario
          case 1:
-         cadastraPessoa(&usuario, &qtd);
-
+         cadastrarPessoas(&usuario, &qtd);
+         break;
+         // Mostrar as pessoas cadastradas
+         case 2:
+         mostrarPessoas(usuario, &qtd);
+         break;
          // Sair do programa
          case 0:
-         exit(1);
+         
          break;
 
+         default:
+         printf("ERROR!\n\n");
+         exit(-1);
+         break;
       }
 
    } while (verif != 0);
-     
+
+   free(usuario);
 
    return 0;
 }
