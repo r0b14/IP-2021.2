@@ -89,16 +89,35 @@ Treinador *addPokemon(Treinador *treinadores, char *nomeTreinador, Pokemon pokem
 
 // Remover competidor que perdeu
 Treinador *removeTreinador(Treinador *treinadores, int *qtdCompetidores, int indexTreinador) {
+    Treinador *ptr = treinadores;
+    int i, flag = 0;
 
+    for (i = 0; (i < (*qtdCompetidores)) && (flag == 0); i++) {
+        if(i == indexTreinador) {
+            // Removendo competidor
+            ptr[i] = ptr[(*qtdCompetidores) -  1];
+            // Realocando
+            ptr= (Treinador *) realloc (ptr, ((*qtdCompetidores) + 1) * sizeof(Treinador));
+            if (ptr == NULL) {
+                printf("Error de alocação.\n");
+                exit(-1);
+            }
+        }
+        flag = 1;
+    }
+    
+    return ptr;
 }
 
 char *batalha(Treinador **treinadores, char *nomeCompetidor1, char *nomeCompetidor2, int indexPokemon1, int indexPokemon2, int *qtdCompetidores) {
     char *vencedor = NULL;
     int i, j;
     Pokemon poke1, poke2;
+    int index1, index2;
 
     for (i = 0; i< (*qtdCompetidores); i++) {
         if (strcmp(nomeCompetidor1, (*treinadores)[i].nome) == 0) { // Encontrou o competidor1
+            index1 = i; // gravando a posicao do competidor1
             for (j = 0; j < (*treinadores)[i].nPokemons; j++) { // Percorrendo os pokemons que o competidor tem
                 if (j == indexPokemon1){
                     poke1 = (*treinadores)[i].pokebola[j]; // transferindo
@@ -107,6 +126,7 @@ char *batalha(Treinador **treinadores, char *nomeCompetidor1, char *nomeCompetid
             //poke1 = (*treinadores)[i].pokebola[indexPokemon1];
         }
         else if ((strcmp(nomeCompetidor1, (*treinadores)[i].nome) == 0)) { // Encontrou o competidor2
+            index1 = i; // gravando a posicao do competidor2
             for (j = 0; j < (*treinadores)[i].nPokemons; j++) { // Percorrendo os pokemons que o competidor tem
                 if (j == indexPokemon2){
                     poke2 = (*treinadores)[i].pokebola[j]; // transferindo
@@ -118,20 +138,22 @@ char *batalha(Treinador **treinadores, char *nomeCompetidor1, char *nomeCompetid
 
     if (( poke1.ataque - poke2.ataque ) > ( poke2.ataque - poke1.defesa )) {
         vencedor = nomeCompetidor1;
-        for (i = 0; i< (*qtdCompetidores); i++) {
-            if (strcmp(nomeCompetidor1, (*treinadores)[i].nome) == 0) { // Encontrou o competidor1
-            (*treinadores)[i].pontuacao++;
-            }
+        (*treinadores)[index1].pontuacao++;
+        (*treinadores)[index2].pontuacao--;
+
+        if((*treinadores)[index2].pontuacao == -5) {
+            (*treinadores) = removeTreinador((*treinadores), qtdCompetidores, index2);
         }
     } else {
         vencedor = nomeCompetidor2;
-        for (i = 0; i< (*qtdCompetidores); i++) {
-            if (strcmp(nomeCompetidor2, (*treinadores)[i].nome) == 0) { // Encontrou o competidor1
-            }
+        (*treinadores)[index1].pontuacao--;
+        (*treinadores)[index2].pontuacao++;
+        if((*treinadores)[index1].pontuacao == -5) {
+            (*treinadores) = removeTreinador((*treinadores), qtdCompetidores, index1);
         }
     }
     
-    
+    return vencedor;
 }
 
 void menu() {
@@ -210,11 +232,12 @@ int main() {
                 scanf("%d", &poke2);
 
                 vencedor = batalha(&listaCompetidor, &competidor1, &competidor2, poke1, poke2, &qtdCompetidores);
-
+                
+                printf("\n\n Vencedor: %s\n\n", vencedor);
             break;
             // Sair do Programa
             case 4:
-             
+            exit(1);
             break;
         
             default:
