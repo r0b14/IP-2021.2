@@ -6,7 +6,6 @@ int main() {
    /**
     * Bubblesort
     * Ordenando o vetor de forma crescente
-    * 
     */
 
    int i, aux, contador, qtd;
