@@ -19,7 +19,7 @@ int main()
    /** Fazendo uma outra representação
     * O sizeof retorna como long int
     * como eu vou querer a quantidade de elementos e não o tamanho que todo ele ocupa, o int é suficiente
-    */   
+    */    
    int tam = sizeof(vet) / sizeof(int);
    // Mostrando a quantidade de elementos no vetor
    printf("quantidade de elementos= %d\n", tam);
